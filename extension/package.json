@@ -1,0 +1,18 @@
+{
+    "name": "new-with-ratios",
+    "displayName": "New With Ratios",
+    "description": "Create new sprites with pre-defined ratios",
+    "version": "1.0",
+    "author": { "name": "David Fletcher",
+                "email": "david.login@aol.com",
+                "url": "https://github.com/david-fletcher" },
+    "contributors": [ ],
+    "publisher": "David Fletcher",
+    "license": "MIT",
+    "categories": [ "Scripts" ],
+    "contributes": {
+      "scripts": [
+          { "path": "./plugin.lua" }
+      ]
+    }
+  }
