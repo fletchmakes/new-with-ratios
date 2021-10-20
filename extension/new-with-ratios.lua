@@ -72,6 +72,11 @@ local function mainWindow()
                 id="fourtoseven",
                 enabled=true
             }
+            
+            dialog:modify {
+                id="fourtothree",
+                enabled=true
+            }
 
             dialog:modify {
                 id="seventoeight",
@@ -80,6 +85,11 @@ local function mainWindow()
 
             dialog:modify {
                 id="sixteentonine",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="noratio",
                 enabled=true
             }
         end
@@ -108,6 +118,11 @@ local function mainWindow()
             }
 
             dialog:modify {
+                id="fourtothree",
+                enabled=true
+            }
+
+            dialog:modify {
                 id="seventoeight",
                 enabled=true
             }
@@ -116,10 +131,59 @@ local function mainWindow()
                 id="sixteentonine",
                 enabled=true
             }
+
+            dialog:modify {
+                id="noratio",
+                enabled=true
+            }
         end
     }
 
     dialog:newrow()
+
+    dialog:button {
+        id="fourtothree",
+        text="4 : 3",
+        onclick=function()
+            ratio_width = 4
+            ratio_height = 3
+            local new_height = adjust_for_ratio(dialog.data.width, ratio_width, ratio_height)
+            dialog:modify {
+                id="height",
+                text=new_height
+            }
+
+            dialog:modify {
+                id="onetoone",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="fourtoseven",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="fourtothree",
+                enabled=false
+            }
+
+            dialog:modify {
+                id="seventoeight",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="sixteentonine",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="noratio",
+                enabled=true
+            }
+        end
+    }
 
     dialog:button {
         id="seventoeight",
@@ -144,6 +208,11 @@ local function mainWindow()
             }
 
             dialog:modify {
+                id="fourtothree",
+                enabled=true
+            }
+
+            dialog:modify {
                 id="seventoeight",
                 enabled=false
             }
@@ -152,8 +221,15 @@ local function mainWindow()
                 id="sixteentonine",
                 enabled=true
             }
+
+            dialog:modify {
+                id="noratio",
+                enabled=true
+            }
         end
     }
+
+    dialog:newrow()
 
     dialog:button {
         id="sixteentonine",
@@ -178,12 +254,61 @@ local function mainWindow()
             }
 
             dialog:modify {
+                id="fourtothree",
+                enabled=true
+            }
+
+            dialog:modify {
                 id="seventoeight",
                 enabled=true
             }
 
             dialog:modify {
                 id="sixteentonine",
+                enabled=false
+            }
+
+            dialog:modify {
+                id="noratio",
+                enabled=true
+            }
+        end
+    }
+
+    dialog:button {
+        id="noratio",
+        text="Custom",
+        onclick=function()
+            ratio_width = -1
+            ratio_height = -1
+
+            dialog:modify {
+                id="onetoone",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="fourtoseven",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="fourtothree",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="seventoeight",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="sixteentonine",
+                enabled=true
+            }
+
+            dialog:modify {
+                id="noratio",
                 enabled=false
             }
         end
@@ -202,6 +327,7 @@ local function mainWindow()
         label="Width:",
         decimals=0,
         onchange=function()
+            if (ratio_width == -1) then return end
             local new_height = adjust_for_ratio(dialog.data.width, ratio_width, ratio_height)
             dialog:modify {
                 id="height",
@@ -215,6 +341,7 @@ local function mainWindow()
         label="Height:",
         decimals=0,
         onchange=function()
+            if (ratio_height == -1) then return end
             local new_width = adjust_for_ratio(dialog.data.height, ratio_height, ratio_width)
             dialog:modify {
                 id="width",
