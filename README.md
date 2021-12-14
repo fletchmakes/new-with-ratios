@@ -18,7 +18,7 @@ Currently, the ratios supported are:
 * 4:7
 * 7:8
 * 16:9
-* Custom (no ratio enforced)
+* Custom (define your own ratio!)
 
 I'm open to adding more ratios to the script, so please let me know if you'd like to see another ratio in this dialog as well! It's minimal effort to add new ones, so don't be shy!
 

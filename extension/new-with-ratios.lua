@@ -89,8 +89,23 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=true
+            }
+
+            dialog:modify {
+                id="custom",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=false
             }
         end
     }
@@ -133,8 +148,23 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=true
+            }
+
+            dialog:modify {
+                id="custom",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=false
             }
         end
     }
@@ -179,8 +209,23 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=true
+            }
+            
+            dialog:modify {
+                id="custom",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=false
             }
         end
     }
@@ -223,8 +268,23 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=true
+            }
+            
+            dialog:modify {
+                id="custom",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=false
             }
         end
     }
@@ -269,18 +329,46 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=true
+            }
+            
+            dialog:modify {
+                id="custom",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=false
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=false
             }
         end
     }
 
     dialog:button {
-        id="noratio",
+        id="customratio",
         text="Custom",
         onclick=function()
-            ratio_width = -1
-            ratio_height = -1
+            if (dialog.data.ratiowidth > 1) then
+                ratio_width = dialog.data.ratiowidth
+            else
+                ratio_width = 1
+            end
+            if (dialog.data.ratioheight > 1) then
+                ratio_height = dialog.data.ratioheight
+            else
+                ratio_height = 1
+            end
+            local new_height = adjust_for_ratio(dialog.data.width, ratio_width, ratio_height)
+            dialog:modify {
+                id="height",
+                text=new_height
+            }
 
             dialog:modify {
                 id="onetoone",
@@ -308,8 +396,64 @@ local function mainWindow()
             }
 
             dialog:modify {
-                id="noratio",
+                id="customratio",
                 enabled=false
+            }
+
+            dialog:modify {
+                id="custom",
+                visible=true
+            }
+
+            dialog:modify {
+                id="ratiowidth",
+                visible=true
+            }
+
+            dialog:modify {
+                id="ratioheight",
+                visible=true
+            }
+        end
+    }
+
+    -----------------------------------
+    -- CUSTOM RATIO
+    -----------------------------------
+    dialog:separator {
+        id="custom",
+        text="Custom Ratio",
+        visible=false
+    }
+
+    dialog:number {
+        id="ratiowidth",
+        label="W:",
+        decimals=0,
+        text="1",
+        visible=false,
+        onchange=function()
+            ratio_width = dialog.data.ratiowidth
+            local new_height = adjust_for_ratio(dialog.data.width, dialog.data.ratiowidth, dialog.data.ratioheight)
+            dialog:modify {
+                id="height",
+                text=new_height
+            }
+        end
+    }
+
+    dialog:number {
+        id="ratioheight",
+        label="H:",
+        decimals=0,
+        text="1",
+        visible=false,
+        onchange=function()
+            ratio_height = dialog.data.ratioheight
+            local new_height = adjust_for_ratio(dialog.data.width, dialog.data.ratiowidth, dialog.data.ratioheight)
+            dialog:modify {
+                id="height",
+                text=new_height
             }
         end
     }
@@ -386,6 +530,11 @@ local function mainWindow()
     dialog:modify {
         id="height",
         text=64
+    }
+
+    dialog:modify {
+        id="custom",
+        visible=false
     }
 
     return dialog
