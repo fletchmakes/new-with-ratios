@@ -24,7 +24,7 @@ I'm open to adding more ratios to the script, so please let me know if you'd lik
 
 ## Credits
 
-This extension was commissioned by [@timesnewredux](https://twitter.com/timesnewredux) on Twitter.
+This extension was commissioned by [@TINA_pxl](https://x.com/TINA_pxl) on Twitter.
 
 As an advocate of open-source software, feel free to suggest edits, or just fork this repository and make your own! The license on this software is open for commercial and private use. This extension will remain free forever; however, if you'd like to buy me a coffee, you can do so here: 
 
